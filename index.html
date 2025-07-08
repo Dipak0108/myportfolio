@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dipak Pandit - Portfolio</title>
+    <meta name="description" content="Portfolio of Dipak Pandit, Web Developer. Experienced in JavaScript, Node.js, EJS, MySQL, AWS, and CSS. See projects, skills, experience, and contact details." />
+    <meta name="keywords" content="Dipak Pandit, web developer, JavaScript, Node.js, portfolio, projects, skills, contact" />
+    <meta name="author" content="Dipak Pandit" />
+    <link rel="icon" href="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c5c67afb-3d58-420f-9e92-0b43cb7c8dce.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+      /* Custom styles for the dropdown menu */
+        .dropdown {
+            display: none;
+        }
+
+        .dropdown.active {
+            display: block;
+        }
+
+        /* Smooth scroll for anchor navigation */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 4rem; /* offset for fixed header to prevent content hidden behind sticky header */
+        }
+      /* Contact Form Styling */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            color: #e5e7eb;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.025em;
+        }
+
+        .form-input {
+            background-color: #374151;
+            border: 2px solid #4b5563;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: #f9fafb;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+            background-color: #4b5563;
+        }
+
+        .form-input:hover {
+            border-color: #6b7280;
+        }
+
+        .form-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .form-textarea {
+            background-color: #374151;
+            border: 2px solid #4b5563;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: #f9fafb;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+        }
+
+        .form-textarea:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+            background-color: #4b5563;
+        }
+
+        .form-textarea:hover {
+            border-color: #6b7280;
+        }
+
+        .form-textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.875rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.025em;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .contact-form {
+                gap: 1.25rem;
+            }
+            
+            .form-input,
+            .form-textarea {
+                padding: 0.625rem 0.875rem;
+            }
+            
+            .submit-btn {
+                padding: 0.75rem 1.5rem;
+            }
+        }
+
+    </style>
+  </head>
+
+  <body class="bg-gray-900 text-white font-sans">
+    <!-- Header -->
+    <header class="flex justify-between items-center p-5 bg-gray-800 sticky top-0 z-50 shadow-md" style="height:64px;">
+      <h1 class="text-2xl font-extrabold tracking-wide select-none">Dipak Pandit</h1>
+      <nav class="hidden md:flex space-x-8 text-gray-300 font-medium tracking-wide">
+        <a href="#home" class="hover:text-gray-400 transition-colors duration-300">Home</a>
+        <a href="#about" class="hover:text-gray-400 transition-colors duration-300">About</a>
+        <a href="#skills" class="hover:text-gray-400 transition-colors duration-300">Skills</a>
+        <a href="#projects" class="hover:text-gray-400 transition-colors duration-300">Projects</a>
+        <a href="#experience" class="hover:text-gray-400 transition-colors duration-300">Experience</a>
+        <a href="#contact" class="hover:text-gray-400 transition-colors duration-300">Contact</a>
+      </nav>
+      <button id="menu-toggle" class="md:hidden p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400" aria-label="Toggle menu">
+        <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </header>
+    <!-- Mobile Dropdown Menu -->
+    <div id="dropdown-menu" class="dropdown md:hidden bg-gray-800 text-gray-300 space-y-3 p-5">
+      <a href="#home" class="block py-2 px-3 rounded-md hover:bg-gray-700">Home</a>
+      <a href="#about" class="block py-2 px-3 rounded-md hover:bg-gray-700">About</a>
+      <a href="#skills" class="block py-2 px-3 rounded-md hover:bg-gray-700">Skills</a>
+      <a href="#projects" class="block py-2 px-3 rounded-md hover:bg-gray-700">Projects</a>
+      <a href="#experience" class="block py-2 px-3 rounded-md hover:bg-gray-700">Experience</a>
+      <a href="#contact" class="block py-2 px-3 rounded-md hover:bg-gray-700">Contact</a>
+    </div>
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto p-5 space-y-10">
+      <!-- Home Card -->
+      <section id="home" class="bg-gray-800 rounded-lg shadow-lg p-8 flex flex-col md:flex-row items-center text-center md:text-left">
+        <div class="md:flex-1 mb-6 md:mb-0">
+          <h2 class="text-5xl font-extrabold">Hi, I'm</h2>
+          <h2 class="text-5xl font-extrabold">Dipak Pandit</h2>
+          <p class="mt-3 text-xl text-gray-300">I am a Web Developer</p>
+        </div>
+        <div class="md:flex-1" style="justify-content:center; display: flex;">
+          <img src="https://res.cloudinary.com/dggtlz7je/image/upload/e_background_removal/b_rgb:C2C9D6/f_png/v1749930900/dipak_uxkbj5.png" alt="Portrait of Dipak Pandit" class="rounded-full mx-auto md:mx-0 w-68 h-65 object-cover shadow-xl" />
+        </div>
+      </section>
+      <!-- About Card -->
+      <section id="about" class="bg-gray-800 rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold mb-4">About Me</h2>
+        <p class="text-gray-300 leading-relaxed">
+          I’m <b>Dipak Pandit</b>, a passionate web developer dedicated to creating impactful digital experiences. With hands-on experience in designing, deploying, and maintaining web applications, I have built a strong foundation in technologies such as Node.js, MySQL, Redis, EJS, and AWS. My focus is on backend development and API creation, where I effectively implement full CRUD operations. I possess a keen eye for detail, enabling me to address UI responsiveness challenges and deliver scalable cloud-based solutions.
+        </p><br>
+        <p class="text-gray-300 leading-relaxed">I am committed to continuous learning and actively stay updated with emerging technologies to enhance my skill set. Currently, I am expanding my knowledge in TypeScript, React.js, and Next.js, with the goal of strengthening my capabilities in frontend and full-stack development. I am eager to contribute to innovative projects and collaborate with teams that value creativity and technical excellence.
+        </p>
+      </section>
+      <!-- Skills Card -->
+      <section id="skills" class="bg-gray-800 rounded-lg shadow-lg p-8 text-center">
+        <h2 class="text-3xl font-bold mb-8">Skills</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-javascript-plain colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">JavaScript</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-nodejs-plain colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">Node.js</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-ejs-original colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">EJS</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-express-original colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">Express.js</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-mysql-plain colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">MySQL</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-redis-plain colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">Redis</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-amazonwebservices-original colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">AWS</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-bootstrap-plain colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">Bootstrap</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-css3-plain colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">CSS</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-git-plain colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">Git</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-bash-plain colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">Bash</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-python-plain colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">Python</span>
+          </div>
+          <div class="flex flex-col items-center space-y-2">
+            <i class="devicon-linux-plain colored text-6xl"></i>
+            <span class="text-gray-300 font-medium">Linux</span>
+          </div>
+        </div>
+      </section>
+      <!-- Projects Card -->
+      <section id="projects" class="bg-gray-800 rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold mb-6">Projects</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <!-- EMYIC News Project -->
+          <article class="bg-gray-700 rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3bce3cf1-2d85-40c7-875d-40a1e10cb1cb.png" alt="EMYIC News Project Thumbnail" class="w-full h-40 object-cover rounded-md mb-4" />
+            <h3 class="font-semibold text-xl text-gray-100 mb-2">EMYIC News</h3>
+            <p>Ongoing Project...</p>
+            <p class="text-gray-300 flex-grow">
+              A full-stack publishing platform using Node.js, EJS, and AWS, built to deliver SEO-friendly, category-wise news with a public-facing portal and admin content tools.
+            </p>
+          </article>
+          <!-- EMYIC Dashboard Project -->
+          <article class="bg-gray-700 rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/emyic-dashboard-thumbnail.png" alt="EMYIC Dashboard Thumbnail" class="w-full h-40 object-cover rounded-md mb-4" />
+            <h3 class="font-semibold text-xl text-gray-100 mb-2">EMYIC Dashboard</h3>
+            <p>Ongoing Project...</p>
+            <p class="text-gray-300 flex-grow">
+              Admin dashboard built with EJS, Bootstrap, and Node.js that powers content publishing, article management, and user control features for EMYIC News.
+            </p>
+          </article>
+          <!-- Billing Dashboard -->
+          <article class="bg-gray-700 rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f7c2e3ca-40f2-43aa-8c62-e64c63ce24ab.png" alt="Billing Dashboard Thumbnail" class="w-full h-40 object-cover rounded-md mb-4" />
+            <h3 class="font-semibold text-xl text-gray-100 mb-2">Billing Dashboard</h3>
+            <p class="text-gray-300 flex-grow">
+              A professional dashboard designed for managing billing and invoicing data with rich visual reports and analytics.
+            </p>
+          </article>
+          <!-- Auto Attendance System Project -->
+          <article class="bg-gray-700 rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+            <img src="https://via.placeholder.com/600x400?text=Face+Recognition+Attendance" alt="Auto Attendance System Thumbnail" class="w-full h-40 object-cover rounded-md mb-4" />
+            <h3 class="font-semibold text-xl text-gray-100 mb-2">Auto Attendance System</h3>
+            <p class="text-gray-300 flex-grow">
+              Developed a facial recognition-based attendance system aimed at automating classroom attendance, reducing manual work, and improving accuracy. Built using Python.
+            </p>
+          </article>
+        </div>
+      </section>
+      <!-- Experience + Education Card -->
+      <section id="experience" class="bg-gray-800 rounded-lg shadow-lg p-8 space-y-8">
+        <div>
+          <h2 class="text-3xl font-bold mb-4">Experience</h2>
+          <p class="text-gray-300 leading-relaxed">
+            <p><strong>Web Developer at Six Eleven Internet Service (Internship)</strong>
+              <p style="justify-content: flex-end; display: flex; font-size: 13px;">Oct, 2023 - Apr, 2025 from Guwahati, Assam.</p>
+            </p>
+            <ul class="text-gray-300 space-y-2 list-disc list-inside leading-relaxed">
+              <li>Developed and maintained RESTful APIs for content automation and data management.</li>
+              <li>Fixed broken UI components and ensured responsive design across desktop and mobile views.</li>
+              <li>Debugged backend services and resolved database integration issues to improve performance and reliability.</li>
+              <li>Integrated OpenAI’s ChatGPT API to enhance content proofreading functionality.</li>
+            </ul>
+            <strong>Tech Stack:</strong> Node.js, Express, Redis, MySQL, EJS, HTML, CSS, AWS (EC2, S3, RDS, cloudfront), Cloudinary.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold mb-4 border-b border-gray-700 pb-2">Education</h3>
+          <ul class="text-gray-300 space-y-2 list-disc list-inside leading-relaxed">
+            <li><strong>Graduation:</strong> Bachelor’s in Computer Application with (CTIS) from Assam Downtown University</li>
+            <li><strong>High Secondary:</strong> Completed with Science stream from Luit valley Academy</li>
+            <li><strong>Class 10:</strong> Completed from Spring Dale High School</li>
+          </ul>
+        </div>
+      </section>
+      <!-- Contact Card -->
+      <section id="contact" class="bg-gray-800 rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6 text-center">Contact Me</h2>
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+          <!-- Replace with your Access Key -->
+          <input type="hidden" name="access_key" value="1a4b8bf8-4e40-4cf2-972d-8bc68507b8f4">
+          <!-- Name Field -->
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
+          </div>
+          <!-- Email Field -->
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email address" required>
+          </div>
+          <!-- Message Field -->
+          <div class="form-group">
+            <label for="message" class="form-label">Message</label>
+            <textarea id="message" name="message" class="form-textarea" placeholder="Write your message here..." required></textarea>
+          </div>
+          <!-- Honeypot Spam Protection -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-10 select-none">
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://github.com/Dipak0108" aria-label="GitHub" target="_blank" rel="noopener noreferrer" class="hover:text-gray-200 transition-colors flex items-center space-x-1">
+          <span class="material-icons align-middle" style="font-size:24px;">code</span><span>GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/dipak-pandit-0a199820b" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" class="hover:text-gray-200 transition-colors flex items-center space-x-1">
+          <span class="material-icons align-middle" style="font-size:24px;">business_center</span><span>LinkedIn</span>
+        </a>
+        <a href="https://discord.com/invite/dipak0101" aria-label="Discord" target="_blank" rel="noopener noreferrer" class="hover:text-gray-200 transition-colors flex items-center space-x-1">
+          <span class="material-icons align-middle" style="font-size:24px;">chat</span><span>Discord</span>
+        </a>
+        <section class="p-5">
+          <a href="https://emyic-first.s3.amazonaws.com/portfolio/dipak_pandit_resume.pdf" download>Download My Resume</a>
+        </section>
+      </div>
+      <p id="footer-copy">© <span id="year"></span> Dipak Pandit. All rights reserved.</p>
+    </footer>
+    <!-- Material Icons CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script>
+    // Toggle dropdown menu for mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    menuToggle.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('active');
+    });
+
+    // Accessibility: close mobile menu when clicking a link
+    dropdownMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        dropdownMenu.classList.remove('active');
+      });
+    });
+
+    // Set current year dynamically for footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+
+</html>
