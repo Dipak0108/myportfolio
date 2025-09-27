@@ -2,32 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy - Dipak Pandit Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="icon" href="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c5c67afb-3d58-420f-9e92-0b43cb7c8dce.png" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 4rem;
+    }
+   
+      html, body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      footer {
+        background: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+
+  </style>
 </head>
-<body>
-  <header>
-    <h1>Privacy Policy</h1>
-    <nav>
-      <a href="/">Home</a> |
-      <a href="/privacy.html">Privacy Policy</a>
+<body class="bg-gray-50 text-gray-800 overflow-x-hidden">
+  <!-- Header -->
+ <header class="bg-gray-800 text-gray-200 sticky top-0 z-50 shadow-md">
+  <!-- use a valid max-w and full width -->
+  <div class="max-w-screen-xl w-full mx-auto px-4 flex items-center justify-between h-16">
+    <h1 class="text-xl font-extrabold">Dipak Pandit</h1>
+
+    <!-- Hamburger button for small screens -->
+    <button id="menu-toggle" class="md:hidden focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex space-x-6">
+      <a href="/" class="hover:text-white">Home</a>
+      <a href="/privacy.html" class="hover:text-white">Privacy Policy</a>
     </nav>
-  </header>
+  </div>
 
-  <main>
-    <h1>Privacy Policy</h1>
+  <!-- Mobile dropdown -->
+  <div id="dropdown-menu" class="hidden md:hidden px-4 pb-4">
+    <a href="/" class="block py-2 hover:text-white">Home</a>
+    <a href="/privacy.html" class="block py-2 hover:text-white">Privacy Policy</a>
+  </div>
+</header>
+
+
+  <!-- Main -->
+  <main class="max-w-5xl mx-auto p-5 space-y-6">
+    <h1 class="text-3xl font-bold">Privacy Policy</h1>
     <p>Last updated: 27 September 2025</p>
-
     <p>As a personal portfolio, this site does not directly collect personal information unless you voluntarily contact me by email. Any information you provide will only be used to respond to your inquiry.</p>
-
     <p>Third-party services may process data on this site. Please refer to their privacy policies for details about their practices.</p>
-
-    <p>If you have questions about this Privacy Policy, please contact me at <a href="mailto:dipakpandit981@gmail.com">contact@dipakpandit.com</a>.</p>
+    <p>If you have questions about this Privacy Policy, please contact me at
+      <a href="mailto:contact@dipakpandit.com" class="text-blue-600 underline">contact@dipakpandit.com</a>.
+    </p>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Dipak Pandit Portfolio</p>
-  </footer>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-10">
+  <!-- let flex wrap so it doesn’t overflow -->
+  <div class="flex flex-wrap justify-center gap-4 mb-4">
+    <a href="https://github.com/Dipak0108" target="_blank" class="hover:text-gray-200">GitHub</a>
+    <a href="https://www.linkedin.com/in/dipak-pandit-0a199820b" target="_blank" class="hover:text-gray-200">LinkedIn</a>
+    <a href="https://discord.com/invite/dipak0101" target="_blank" class="hover:text-gray-200">Discord</a>
+    <a href="https://emyic-first.s3.amazonaws.com/portfolio/Dipak_Pandit-Resume.pdf" download class="hover:text-gray-200">My Resume</a>
+  </div>
+  <nav class="block">
+    <a href="/" class="hover:text-gray-200">Home</a> |
+    <a href="/privacy.html" class="hover:text-gray-200">Privacy Policy</a>
+  </nav>
+  <p>© <span id="year"></span> Dipak Pandit. All rights reserved.</p>
+</footer>
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    menuToggle.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('hidden');
+    });
+
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
