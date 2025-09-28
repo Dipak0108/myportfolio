@@ -117,33 +117,48 @@
       </section>
         <!-- AD BLOCK -->
      <section class="w-full flex justify-center my-8">
-      <div class="ad-container w-full max-w-screen-md">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-7668366463206998"
-             data-ad-slot="3041960952"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-      </div>
-    </section>
+        <div class="ad-container w-full max-w-screen-md">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-7668366463206998"
+               data-ad-slot="3041960952"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+      </section>
 
-    <script>
-      // Wait for window + container to render
-      function loadAd() {
-        const ad = document.querySelector('.ad-container ins.adsbygoogle');
-        if (ad.offsetWidth > 0) {
-          try {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          } catch (e) {
-            console.error('AdSense push error:', e);
+      <script>
+        // Flag to ensure AdSense is loaded only once
+        let adLoaded = false;
+
+        function pushAd() {
+          if (adLoaded) return;
+          const ad = document.querySelector('.ad-container ins.adsbygoogle');
+          if (!ad) return;
+
+          // Wait until container has width
+          if (ad.offsetWidth > 0) {
+            try {
+              (adsbygoogle = window.adsbygoogle || []).push({});
+              adLoaded = true;
+              console.log("AdSense loaded!");
+            } catch (e) {
+              console.error('AdSense push error:', e);
+            }
+          } else {
+            setTimeout(pushAd, 200); // retry if width still 0
           }
-        } else {
-          // retry in 200ms if container width is still 0
-          setTimeout(loadAd, 200);
         }
-      }
-      window.addEventListener('load', loadAd);
-    </script>
+
+        // Load after page load
+        window.addEventListener('load', pushAd);
+
+        // Lazy-load on user interaction
+        ['mousemove', 'scroll', 'touchstart'].forEach(event =>
+          document.addEventListener(event, pushAd, { once: true })
+        );
+      </script>
+
 
 
       <!-- About Card -->
